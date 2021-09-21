@@ -5,7 +5,7 @@ function Comidas() {
   return (
     <div>
       <Header />
-      <h1>CLista de comidas</h1>
+      <h1>Lista de comidas</h1>
     </div>
   );
 }
