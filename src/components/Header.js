@@ -7,7 +7,7 @@ function Header() {
     <div>
       <img src={ profileIconSrc } alt="Profile Icon" data-testid="profile-top-btn" />
       <h1 data-testid="page-title">Comidas</h1>
-      <img src={ searchIconSrc } alt="Profile Icon" data-testid="search-top-btn" />
+      <img src={ searchIconSrc } alt="Search Icon" data-testid="search-top-btn" />
     </div>
   );
 }
