@@ -1,7 +1,11 @@
 .footer__container{
-  border: 1px solid green;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer__link{
-  border: 1px solid blue;
+  cursor: pointer;
 }
