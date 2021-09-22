@@ -10,7 +10,7 @@ function Footer() {
     <section className="footer__container" data-testid="footer">
       <Link
         className="footer__link drinks"
-        to="../Pages/Drinks"
+        to="/bebidas"
       >
         <img
           src={ drinkIcon }
@@ -20,7 +20,7 @@ function Footer() {
       </Link>
       <Link
         className="footer__link explorer"
-        to="../Pages/ExploreScreen"
+        to="/explorar"
       >
         <img
           src={ exploreIcon }
@@ -30,7 +30,7 @@ function Footer() {
       </Link>
       <Link
         className="footer__link food"
-        to="../Pages/Food"
+        to="/comidas"
       >
         <img
           src={ mealIcon }
