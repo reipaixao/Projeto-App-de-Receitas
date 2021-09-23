@@ -13,7 +13,7 @@ import DrinksByIngredient from './Pages/DrinksByIngredient';
 import FoodsByOrigin from './Pages/FoodsByOrigin';
 import RecipesMade from './Pages/ RecipesMade';
 import FavoriteRecipes from './Pages/FavoriteRecipes';
-import RecipeDetail from './components/RecipeDetailCard';
+import RecipeDetail from './Pages/RecipeDetails';
 
 function App() {
   return (
