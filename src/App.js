@@ -13,6 +13,7 @@ import DrinksByIngredient from './Pages/DrinksByIngredient';
 import FoodsByOrigin from './Pages/FoodsByOrigin';
 import RecipesMade from './Pages/ RecipesMade';
 import FavoriteRecipes from './Pages/FavoriteRecipes';
+import RecipeDetail from './Pages/RecipeDetail';
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
         <Route exact path="/receitas-feitas" component={ RecipesMade } />
         <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
         <Route exact path="/perfil" component={ Perfil } />
+        <Route exact path="/comidas/52771" component={ RecipeDetail } />
+        <Route exact path="/bebidas/178319" component={ RecipeDetail } />
       </Switch>
     </div>
   );
