@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const INGREDIENT = 'ingrediente';
 const NAME = 'nome';
 const FIRST_LETTER = 'primeira-letra';
+const MEAL_API_ADDRESS = 'https://www.themealdb.com';
+const DRINKS_API_ADDRESS = 'https://www.thecocktaildb.com';
 
 function SearchBar() {
+  const location = useLocation();
   const [inputvalue, setInputvalue] = useState('');
   const [radioButtonValue, setRadioButtonValue] = useState();
 
@@ -18,28 +22,30 @@ function SearchBar() {
 
   const alert = () => global.alert('Sua busca deve conter somente 1 (um) caracter');
 
-  const getApi = async () => {
+  const getFoodOrDrinkFromApi = async () => {
+    const apiAddress = location.pathname === '/comidas'
+      ? MEAL_API_ADDRESS : DRINKS_API_ADDRESS;
+
     if (radioButtonValue === INGREDIENT) {
-      const apiByName = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${inputvalue}`;
+      const apiByName = `${apiAddress}/api/json/v1/1/filter.php?i=${inputvalue}`;
       const result = await fetch(apiByName).then((response) => response.json());
       return result;
     }
     if (radioButtonValue === NAME) {
-      const apiByName = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputvalue}`;
+      const apiByName = `${apiAddress}/api/json/v1/1/search.php?s=${inputvalue}`;
       const result = await fetch(apiByName).then((response) => response.json());
       return result;
     }
     if (radioButtonValue === FIRST_LETTER) {
       if (inputvalue.length > 1) return alert();
-
-      const apiByName = `https://www.themealdb.com/api/json/v1/1/search.php?f=${inputvalue}`;
+      const apiByName = `${apiAddress}/api/json/v1/1/search.php?f=${inputvalue}`;
       const result = await fetch(apiByName).then((response) => response.json());
       return result;
     }
   };
 
   const handleClick = () => {
-    getApi();
+    getFoodOrDrinkFromApi();
   };
 
   return (
