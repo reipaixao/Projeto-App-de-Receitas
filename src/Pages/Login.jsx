@@ -24,6 +24,13 @@ function Login() {
     buttonDesabled();
   }, [email, password]);
 
+  // criar uma funçao para submeter os token no local storage,
+  const handleSubmit = () => {
+    // salvando no local storage
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+  };
+
   return (
     <div>
       {/* colocando value nos inputs, para ficarem no estado e serem alterados */}
@@ -41,10 +48,12 @@ function Login() {
         value={ password }
         onChange={ ({ target }) => setPassword(target.value) }
       />
+      {/* criando onclick e chamando a funçao handleSubmit criado acima */}
       <button
         type="button"
         data-testid="login-submit-btn"
         disabled={ disabled }
+        onClick={ handleSubmit }
       >
         Entrar
       </button>
