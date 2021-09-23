@@ -1,7 +1,5 @@
-// CRIANDO O CONTEXT
-
 import { createContext } from 'react';
 
-const MyContext = createContext();
+const Context = createContext();
 
-export default MyContext;
+export default Context;
