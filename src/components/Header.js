@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import profileIconSrc from '../images/profileIcon.svg';
 import searchIconSrc from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 function Header({ title, withSearchButton }) {
   const [showSearchInput, setShowSearchInput] = useState(false);
@@ -34,7 +35,7 @@ function Header({ title, withSearchButton }) {
             <img src={ searchIconSrc } alt="Search Icon" data-testid="search-top-btn" />
           </button>
         )}
-      {showSearchInput && <input data-testid="search-input" />}
+      {showSearchInput && <SearchBar />}
     </div>
   );
 }
