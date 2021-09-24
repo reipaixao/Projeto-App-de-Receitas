@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { getMealById, getDrinkById } from '../services/Api';
 
 function RecipeDetail() {
   const index = 0;
+  const IdMeal = 52771;
+  const IdDrink = 178319;
+  const { pathname } = useLocation();
+  const { id } = useParams();
+  const [recipe, setRecipe] = useState();
+
+  useEffect(() => {
+    const getRecipe = () => {
+      if (pathname.includes('comida')) {
+        setRecipe(getMealById(IdMeal));
+      } else setRecipe(getDrinkById(IdDrink));
+    };
+    getRecipe();
+  }, [recipe, pathname, id]);
+
   return (
     <section>
       <img data-testid="recipe-photo" alt="recipe" />
