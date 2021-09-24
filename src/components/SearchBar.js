@@ -53,7 +53,7 @@ function SearchBar() {
 
     if (location.pathname === '/comidas') {
       setMealsValue(result.meals);
-      if (result.meals.length === 1) {
+      if (result.meals && result.meals.length === 1) {
         history.push({
           pathname: `/comidas/${result.meals[0].idMeal}`,
         });
@@ -62,7 +62,7 @@ function SearchBar() {
 
     if (location.pathname === '/bebidas') {
       setDrinksValue(result.drinks);
-      if (result.drinks.length === 1) {
+      if (result.drinks && result.drinks.length === 1) {
         history.push({
           pathname: `/bebidas/${result.drinks[0].idDrink}`,
         });
