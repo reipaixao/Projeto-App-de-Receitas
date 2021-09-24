@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import Context from '../context/Context';
 
 const INGREDIENT = 'ingrediente';
 const NAME = 'nome';
@@ -8,6 +9,7 @@ const MEAL_API_ADDRESS = 'https://www.themealdb.com';
 const DRINKS_API_ADDRESS = 'https://www.thecocktaildb.com';
 
 function SearchBar() {
+  const { setMealsValue, setDrinksValue } = useContext(Context);
   const location = useLocation();
   const [inputvalue, setInputvalue] = useState('');
   const [radioButtonValue, setRadioButtonValue] = useState();
@@ -44,8 +46,15 @@ function SearchBar() {
     }
   };
 
-  const handleClick = () => {
-    getFoodOrDrinkFromApi();
+  const handleClick = async () => {
+    const result = await getFoodOrDrinkFromApi();
+
+    if (location.pathname === '/comidas') {
+      setMealsValue(result.meals);
+      if(result.meals.length === 1) 
+    } else if (location.pathname === '/bebidas') {
+      setDrinksValue(result.drinks);
+    }
   };
 
   return (
