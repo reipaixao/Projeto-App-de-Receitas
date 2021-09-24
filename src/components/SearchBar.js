@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import Context from '../context/Context';
 
@@ -9,6 +10,7 @@ const MEAL_API_ADDRESS = 'https://www.themealdb.com';
 const DRINKS_API_ADDRESS = 'https://www.thecocktaildb.com';
 
 function SearchBar() {
+  const history = useHistory();
   const { setMealsValue, setDrinksValue } = useContext(Context);
   const location = useLocation();
   const [inputvalue, setInputvalue] = useState('');
@@ -51,9 +53,20 @@ function SearchBar() {
 
     if (location.pathname === '/comidas') {
       setMealsValue(result.meals);
-      if(result.meals.length === 1) 
-    } else if (location.pathname === '/bebidas') {
+      if (result.meals.length === 1) {
+        history.push({
+          pathname: `/comidas/${result.meals[0].idMeal}`,
+        });
+      }
+    }
+
+    if (location.pathname === '/bebidas') {
       setDrinksValue(result.drinks);
+      if (result.drinks.length === 1) {
+        history.push({
+          pathname: `/bebidas/${result.drinks[0].idDrink}`,
+        });
+      }
     }
   };
 
