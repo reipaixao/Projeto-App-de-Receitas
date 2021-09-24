@@ -4,7 +4,12 @@ import Context from './Context';
 // consulta ao site - https://pt-br.reactjs.org/docs/render-props.html
 
 function Provider({ children }) {
+  const [meals, setMeals] = useState([]);
+  const [drinks, setDrinks] = useState([]);
   const [emailInput, setEmailInput] = useState('');
+
+  const setMealsValue = (newMeals) => setMeals(newMeals);
+  const setDrinksValue = (newDrinks) => setDrinks(newDrinks);
 
   return (
     // permite componentes consumidores a assinarem mudanças no contexto, no caso email e set email que serao salvos no estado
@@ -12,6 +17,10 @@ function Provider({ children }) {
       value={ {
         emailInput,
         setEmailInput,
+        meals,
+        setMealsValue,
+        drinks,
+        setDrinksValue,
       } }
     >
       {children}
