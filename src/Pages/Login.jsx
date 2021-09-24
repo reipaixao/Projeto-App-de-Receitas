@@ -1,5 +1,6 @@
 // baseado no meu projeto da Elaine - https://github.com/tryber/sd-013-a-project-trybewallet/commit/668b077c70f48ff72c6ce11fc20c0c9225d4b590
 import React, { useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Context from '../context/Context';
 
 function Login() {
@@ -53,14 +54,16 @@ function Login() {
         onChange={ ({ target }) => setPassword(target.value) }
       />
       {/* criando onclick e chamando a funçao handleSubmit criado acima */}
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ disabled }
-        onClick={ handleSubmit }
-      >
-        Entrar
-      </button>
+      <Link to="/comidas">
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ disabled }
+          onClick={ handleSubmit }
+        >
+          Entrar
+        </button>
+      </Link>
     </div>
   );
 }
