@@ -14,15 +14,18 @@ function Drinks() {
       setDrinksValue(await getDrinks());
     }
     fetchDrinks();
-  }, [])
+  })
 
   const MAX_DRINK_CARDS = 12;
 
+  if (drinks === null) {
+    global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  }
   return (
     <div>
       <Header title="Bebidas" withSearchButton />
       <h1>Lista de bebidas</h1>
-      {drinks.slice(0, MAX_DRINK_CARDS).map((drink, index) => (
+      {drinks && drinks.slice(0, MAX_DRINK_CARDS).map((drink, index) => (
         <Card
           key={ drink.strDrink }
           name={ drink.strDrink }
