@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -59,12 +60,17 @@ function Food() {
         ))}
       </section>
       {meals && meals.slice(0, MAX_FOOD_CARDS).map((meal, index) => (
-        <Card
-          key={ meal.strMeal }
-          name={ meal.strMeal }
-          image={ meal.strMealThumb }
-          index={ index }
-        />
+        <Link
+          to={ `/comidas/${meal.idMeal}` }
+          key={ index }
+        >
+          <Card
+            key={ meal.strMeal }
+            name={ meal.strMeal }
+            image={ meal.strMealThumb }
+            index={ index }
+          />
+        </Link>
       ))}
       <Footer />
     </div>
