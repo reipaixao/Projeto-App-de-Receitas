@@ -7,7 +7,6 @@ function Provider({ children }) {
   const [meals, setMeals] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [emailInput, setEmailInput] = useState('');
-  const [categories, setCategoris] = useState([]);
 
   const setMealsValue = (newMeals) => setMeals(newMeals);
   const setDrinksValue = (newDrinks) => setDrinks(newDrinks);
@@ -22,8 +21,6 @@ function Provider({ children }) {
         setMealsValue,
         drinks,
         setDrinksValue,
-        categories,
-        setCategoris,
       } }
     >
       {children}
