@@ -21,3 +21,12 @@ export async function getMeals() {
   const response = await fetch(endPoint).then((data) => data.json());
   return response.meals;
 }
+
+export async function getCategories(type) {
+  let search = '';
+  if (type === 'meals') search = 'meal';
+  if (type === 'drinks') search = 'cocktail';
+  const endPoint = `https://www.the${search}db.com/api/json/v1/1/list.php?c=list`;
+  const response = await fetch(endPoint).then((data) => data.json());
+  return response[type];
+}
