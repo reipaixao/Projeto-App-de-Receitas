@@ -1,11 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
 import Context from '../context/Context';
+import { getDrinks } from '../services/Api';
+
 
 function Drinks() {
-  const { drinks } = useContext(Context);
+  const { drinks, setDrinksValue } = useContext(Context);
+
+  useEffect(() => {
+    const fetchDrinks = async () => {
+      setDrinksValue(await getDrinks());
+    }
+    fetchDrinks();
+  }, [])
+
   const MAX_DRINK_CARDS = 12;
 
   return (

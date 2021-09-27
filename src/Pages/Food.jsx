@@ -1,13 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Card from '../components/Card';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Context from '../context/Context';
+import { getMeals } from '../services/Api';
+
 
 function Food() {
-  const { meals } = useContext(Context);
-  const MAX_FOOD_CARDS = 12;
+  const { meals, setMealsValue } = useContext(Context);
 
+  useEffect(() => {
+    const fetchMeals = async () => {
+      setMealsValue(await getMeals());
+    }
+    fetchMeals();
+  }, [])
+
+  const MAX_FOOD_CARDS = 12;
   return (
     <div>
       <Header title="Comidas" withSearchButton />
