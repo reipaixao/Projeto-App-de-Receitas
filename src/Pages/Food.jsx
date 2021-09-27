@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import Context from '../context/Context';
 import { getMeals } from '../services/Api';
 
-
 function Food() {
   const { meals, setMealsValue } = useContext(Context);
   const MAX_FOOD_CARDS = 12;
@@ -13,14 +12,14 @@ function Food() {
   useEffect(() => {
     const fetchMeals = async () => {
       setMealsValue(await getMeals());
-    }
+    };
     fetchMeals();
-  })
-  
+  });
+
   if (meals === null) {
     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }
-  
+
   return (
     <div>
       <Header title="Comidas" withSearchButton />

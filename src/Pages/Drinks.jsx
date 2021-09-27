@@ -5,16 +5,15 @@ import Card from '../components/Card';
 import Context from '../context/Context';
 import { getDrinks } from '../services/Api';
 
-
 function Drinks() {
   const { drinks, setDrinksValue } = useContext(Context);
 
   useEffect(() => {
     const fetchDrinks = async () => {
       setDrinksValue(await getDrinks());
-    }
+    };
     fetchDrinks();
-  })
+  });
 
   const MAX_DRINK_CARDS = 12;
 
