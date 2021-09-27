@@ -19,7 +19,7 @@ function Header({ title, withSearchButton }) {
   };
 
   return (
-    <div>
+    <div className="header">
       <Link
         to="/perfil"
       >

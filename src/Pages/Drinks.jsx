@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Card from '../components/Card';
 import Context from '../context/Context';
 import { getDrinks, getCategories } from '../services/Api';
+import '../styles/drinks.css';
 
 function Drinks() {
   const { drinks, setDrinksValue } = useContext(Context);
@@ -31,12 +32,14 @@ function Drinks() {
   if (drinks === null) {
     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }
+
   return (
     <div>
       <Header title="Bebidas" withSearchButton />
       <h1>Lista de bebidas</h1>
-      <section className="filter__buttons">
+      <section className="filter__container">
         <button
+          className="filter__button"
           type="button"
           name="All"
           data-testid="All-category-filter"
@@ -46,6 +49,7 @@ function Drinks() {
         </button>
         {categories && categories.slice(0, MAX_CATEGORIS).map((button, index) => (
           <button
+            className="filter__button"
             type="button"
             key={ index }
             data-testid={ `${button.strCategory}-category-filter` }
