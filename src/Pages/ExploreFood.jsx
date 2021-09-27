@@ -8,8 +8,8 @@ function ExploreFood() {
     <div>
       <Header title="Explorar Comidas" withSearchButton={ false } />
       <h1>Explorar Comidas</h1>
-      <Footer />
       <ButtonsExplorer page="food" />
+      <Footer />
     </div>
   );
 }

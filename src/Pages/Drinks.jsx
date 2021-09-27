@@ -31,20 +31,33 @@ function Drinks() {
   if (drinks === null) {
     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }
+
   return (
     <div>
       <Header title="Bebidas" withSearchButton />
       <h1>Lista de bebidas</h1>
-      {categories && categories.slice(0, MAX_CATEGORIS).map((button, index) => (
+      <section className="filter__container">
         <button
+          className="filter__button"
           type="button"
-          key={ index }
-          data-testid={ `${button.strCategory}-category-filter` }
-          onClick={ () => handleFilter(button.strCategory) }
+          name="All"
+          data-testid="All-category-filter"
+          onClick={ () => handleFilter('All') }
         >
-          { button.strCategory }
+          All
         </button>
-      ))}
+        {categories && categories.slice(0, MAX_CATEGORIS).map((button, index) => (
+          <button
+            className="filter__button"
+            type="button"
+            key={ index }
+            data-testid={ `${button.strCategory}-category-filter` }
+            onClick={ () => handleFilter(button.strCategory) }
+          >
+            { button.strCategory }
+          </button>
+        ))}
+      </section>
       {drinks && drinks.slice(0, MAX_DRINK_CARDS).map((drink, index) => (
         <Card
           key={ drink.strDrink }

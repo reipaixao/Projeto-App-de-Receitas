@@ -37,17 +37,27 @@ function Food() {
     <div>
       <Header title="Comidas" withSearchButton />
       <h1>Lista de comidas</h1>
-      {categories && categories.slice(0, MAX_CATEGORIS).map((button, index) => (
+      <section className="filter__buttons">
         <button
           type="button"
-          name={ button.strCategory }
-          key={ index }
-          data-testid={ `${button.strCategory}-category-filter` }
-          onClick={ () => handleFilter(button.strCategory) }
+          name="All"
+          data-testid="All-category-filter"
+          onClick={ () => handleFilter('All') }
         >
-          { button.strCategory }
+          All
         </button>
-      ))}
+        {categories && categories.slice(0, MAX_CATEGORIS).map((button, index) => (
+          <button
+            type="button"
+            name={ button.strCategory }
+            key={ index }
+            data-testid={ `${button.strCategory}-category-filter` }
+            onClick={ () => handleFilter(button.strCategory) }
+          >
+            { button.strCategory }
+          </button>
+        ))}
+      </section>
       {meals && meals.slice(0, MAX_FOOD_CARDS).map((meal, index) => (
         <Card
           key={ meal.strMeal }
