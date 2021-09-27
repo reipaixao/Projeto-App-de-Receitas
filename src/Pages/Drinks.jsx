@@ -18,7 +18,15 @@ function Drinks() {
       setCategories(await getCategories('drinks'));
     };
     fetchDrinks();
-  }, [categorie, setDrinksValue]);
+  }, [categorie]);
+
+  const handleFilter = (categorieName) => {
+    if (categorieName === categorie) {
+      setCategorie('All');
+    } else {
+      setCategorie(categorieName);
+    }
+  };
 
   if (drinks === null) {
     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
@@ -32,7 +40,7 @@ function Drinks() {
           type="button"
           key={ index }
           data-testid={ `${button.strCategory}-category-filter` }
-          onClick={ () => setCategorie(button.strCategory) }
+          onClick={ () => handleFilter(button.strCategory) }
         >
           { button.strCategory }
         </button>

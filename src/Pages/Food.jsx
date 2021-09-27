@@ -19,7 +19,15 @@ function Food() {
       setCategories(await getCategories('meals'));
     };
     fetchAPI();
-  }, [categorie, setMealsValue]);
+  }, [categorie]);
+
+  const handleFilter = (categorieName) => {
+    if (categorieName === categorie) {
+      setCategorie('All');
+    } else {
+      setCategorie(categorieName);
+    }
+  };
 
   if (meals === null) {
     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
@@ -35,7 +43,7 @@ function Food() {
           name={ button.strCategory }
           key={ index }
           data-testid={ `${button.strCategory}-category-filter` }
-          onClick={ () => setCategorie(button.strCategory) }
+          onClick={ () => handleFilter(button.strCategory) }
         >
           { button.strCategory }
         </button>
