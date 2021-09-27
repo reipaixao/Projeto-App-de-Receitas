@@ -35,6 +35,14 @@ function Drinks() {
     <div>
       <Header title="Bebidas" withSearchButton />
       <h1>Lista de bebidas</h1>
+      <button
+        type="button"
+        name="All"
+        data-testid="All-category-filter"
+        onClick={ () => handleFilter('All') }
+      >
+        All
+      </button>
       {categories && categories.slice(0, MAX_CATEGORIS).map((button, index) => (
         <button
           type="button"

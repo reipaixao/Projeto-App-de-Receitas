@@ -37,6 +37,14 @@ function Food() {
     <div>
       <Header title="Comidas" withSearchButton />
       <h1>Lista de comidas</h1>
+      <button
+        type="button"
+        name="All"
+        data-testid="All-category-filter"
+        onClick={ () => handleFilter('All') }
+      >
+        All
+      </button>
       {categories && categories.slice(0, MAX_CATEGORIS).map((button, index) => (
         <button
           type="button"
