@@ -4,7 +4,6 @@ import Footer from '../components/Footer';
 import Card from '../components/Card';
 import Context from '../context/Context';
 import { getDrinks, getCategories } from '../services/Api';
-import '../styles/drinks.css';
 
 function Drinks() {
   const { drinks, setDrinksValue } = useContext(Context);
