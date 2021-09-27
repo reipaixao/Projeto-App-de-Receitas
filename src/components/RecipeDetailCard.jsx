@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { getMealById, getDrinkById } from '../services/Api';
 import shareIcon from '../images/shareIcon.svg';
 import RecomendationCard from './RecomendationCard';
+import '../CSS/ReciceDetailCard.css';
 
 function RecipeDetail() {
   const { pathname } = useLocation();
@@ -94,7 +95,13 @@ function RecipeDetail() {
               path={ pathname.includes('comidas') ? 'comida' : 'bebida' }
             />
           </p>
-          <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
+          <button
+            className="details-start-btn"
+            type="button"
+            data-testid="start-recipe-btn"
+          >
+            Iniciar Receita
+          </button>
         </section>
       )}
     </div>
