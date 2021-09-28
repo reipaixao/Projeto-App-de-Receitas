@@ -1,4 +1,4 @@
-/* .details-start-btn {
+.details-start-btn {
   border: none;
   bottom: 0;
   margin-bottom: 10px;
@@ -7,7 +7,7 @@
   width: 95%;
 }
 
-.recomendation-cards {
+/* .recomendation-cards {
   display: inline-flex;
   height: 100%;
   width: 50%;

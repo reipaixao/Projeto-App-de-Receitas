@@ -4,7 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { getMealById, getDrinkById } from '../services/Api';
 import shareIcon from '../images/shareIcon.svg';
 import RecomendationCard from './RecomendationCard';
-// import '../CSS/ReciceDetailCard.css';
+import '../CSS/ReciceDetailCard.css';
 
 function RecipeDetail() {
   const { pathname } = useLocation();
@@ -18,7 +18,13 @@ function RecipeDetail() {
       .includes('strIngredient') && valor);
     const strMeasure = strMeal.filter(([chave, valor]) => chave
       .includes('strMeasure') && valor);
-    return strIngredient.map((item, index) => `${item[1]} - ${strMeasure[index][1]}`);
+    return strIngredient.map((item, index) => {
+      if (strMeasure[index] !== undefined) {
+        return `${item[1]} - ${strMeasure[index][1]}`;
+      } else {
+        return `${item[1]}`;
+      }
+    });
   };
 
   useEffect(() => {

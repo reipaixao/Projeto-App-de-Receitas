@@ -25,8 +25,8 @@ function RecomendationCard({ path }) {
     getRecipe();
   }, [path]);
 
-  console.log(path, 'tipo');
-  console.log(recomendations, 'recom');
+  // console.log(path, 'tipo');
+  // console.log(recomendations, 'recom');
 
   const settings = {
     dots: true,
