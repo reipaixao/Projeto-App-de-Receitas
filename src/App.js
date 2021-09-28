@@ -45,6 +45,8 @@ function App() {
         <Route exact path="/perfil" component={ Perfil } />
         <Route exact path="/comidas/:id" component={ RecipeDetail } />
         <Route exact path="/bebidas/:id" component={ RecipeDetail } />
+        <Route path="/comidas/:id/in-progress" />
+        <Route path="/bebidas/:id/in-progress" />
       </Switch>
     </Provider>
   );

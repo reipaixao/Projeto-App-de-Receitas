@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // https://reactrouter.com/web/api/Hooks
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, Link } from 'react-router-dom';
 import { getMealById, getDrinkById } from '../services/Api';
 import shareIcon from '../images/shareIcon.svg';
 import RecomendationCard from './RecomendationCard';
@@ -39,16 +39,6 @@ function RecipeDetail() {
     };
     getRecipe();
   }, [id, pathname]);
-
-  // const index = 0;
-
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  // };
 
   return (
     <div>
@@ -105,13 +95,16 @@ function RecipeDetail() {
               path={ pathname.includes('comidas') ? 'comida' : 'bebida' }
             />
           </p>
-          <button
-            className="details-start-btn"
-            type="button"
-            data-testid="start-recipe-btn"
-          >
-            Iniciar Receita
-          </button>
+          <Link to={ `${pathname}/in-progress` }>
+            <button
+              className="details-start-btn"
+              type="button"
+              data-testid="start-recipe-btn"
+            >
+              Iniciar Receita
+            </button>
+          </Link>
+          )
         </section>
       )}
     </div>
