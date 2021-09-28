@@ -100,11 +100,11 @@ function RecipeDetail() {
               title="video"
               data-testid="video"
             />) : null}
-          <p>
+          <div>
             <RecomendationCard
               path={ pathname.includes('comidas') ? 'comida' : 'bebida' }
             />
-          </p>
+          </div>
           <button
             className="details-start-btn"
             type="button"
