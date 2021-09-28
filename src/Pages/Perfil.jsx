@@ -5,6 +5,10 @@ import Footer from '../components/Footer';
 
 function Perfil() {
   const userFromlocalStorage = JSON.parse(localStorage.getItem('user'));
+  const clearLocalStorage = () => {
+    localStorage.clear('user');
+  };
+
   return (
     <div>
       <Header title="Perfil" withSearchButton={ false } />
@@ -28,10 +32,11 @@ function Perfil() {
           Receitas Favoritas
         </button>
       </Link>
-      <Link to="/comidas">
+      <Link to="/">
         <button
           type="button"
           data-testid="profile-logout-btn"
+          onClick={ clearLocalStorage }
         >
           Sair
         </button>
