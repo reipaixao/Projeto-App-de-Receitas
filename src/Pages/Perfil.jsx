@@ -1,18 +1,39 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Context from '../context/Context';
 
 function Perfil() {
-  const { emailInput } = useContext(Context);
+  const userFromlocalStorage = JSON.parse(localStorage.getItem('user'));
   return (
     <div>
       <Header title="Perfil" withSearchButton={ false } />
       <h1 data-testid="page-title">Perfil</h1>
-      <p data-testid="profile-email">{emailInput}</p>
-      <button type="button" data-testid="profile-done-btn">Receitas Feitas</button>
-      <button type="button" data-testid="profile-favorite-btn">Receitas Favoritas</button>
-      <button type="button" data-testid="profile-logout-btn">Sair</button>
+      <p data-testid="profile-email">{userFromlocalStorage.email}</p>
+      <Link to="/receitas-feitas">
+        <button
+          type="button"
+          data-testid="profile-done-btn"
+        >
+          Receitas Feitas
+        </button>
+      </Link>
+      <Link to="/receitas-favoritas">
+        <button
+          type="button"
+          data-testid="profile-favorite-btn"
+        >
+          Receitas Favoritas
+        </button>
+      </Link>
+      <Link to="/comidas">
+        <button
+          type="button"
+          data-testid="profile-logout-btn"
+        >
+          Sair
+        </button>
+      </Link>
       <Footer />
     </div>
   );
