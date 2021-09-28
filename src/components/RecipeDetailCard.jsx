@@ -4,7 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { getMealById, getDrinkById } from '../services/Api';
 import shareIcon from '../images/shareIcon.svg';
 import RecomendationCard from './RecomendationCard';
-import '../CSS/ReciceDetailCard.css';
+// import '../CSS/ReciceDetailCard.css';
 
 function RecipeDetail() {
   const { pathname } = useLocation();
@@ -36,7 +36,15 @@ function RecipeDetail() {
     getRecipe();
   }, [id, pathname]);
 
-  const index = 0;
+  // const index = 0;
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
 
   return (
     <div>
@@ -88,9 +96,7 @@ function RecipeDetail() {
               title="video"
               data-testid="video"
             />) : null}
-          <p
-            data-testid={ `${index}-recomendation-card` }
-          >
+          <p>
             <RecomendationCard
               path={ pathname.includes('comidas') ? 'comida' : 'bebida' }
             />
