@@ -3,15 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { getMealById, getDrinkById } from '../services/Api';
 import shareIcon from '../images/shareIcon.svg';
+import RecomendationCard from './RecomendationCard';
 
 function RecipeDetail() {
-  const idMeal = 52771;
-  const idDrink = 178319;
   const { pathname } = useLocation();
   const { id } = useParams();
   const [recipe, setRecipe] = useState([]);
   const [ingredients, setIngredients] = useState([]);
-  // Feito conjuntamento no plantão com o André
+  // Feito em conjunto com o André em plantão
   const fillIngredients = (meal) => {
     const strMeal = Object.entries(meal[0]);
     const strIngredient = strMeal.filter(([chave, valor]) => chave
@@ -24,12 +23,12 @@ function RecipeDetail() {
   useEffect(() => {
     const getRecipe = async () => {
       if (pathname.includes('comidas')) {
-        setRecipe(await getMealById(idMeal));
-        const meal = await getMealById(idMeal);
+        setRecipe(await getMealById(id));
+        const meal = await getMealById(id);
         setIngredients(fillIngredients(meal));
       } else {
-        setRecipe(await getDrinkById(idDrink));
-        const drink = await getDrinkById(idDrink);
+        setRecipe(await getDrinkById(id));
+        const drink = await getDrinkById(id);
         setIngredients(fillIngredients(drink));
       }
     };
@@ -91,7 +90,9 @@ function RecipeDetail() {
           <p
             data-testid={ `${index}-recomendation-card` }
           >
-            RecomendationCard
+            <RecomendationCard
+              path={ pathname.includes('comidas') ? 'comida' : 'bebida' }
+            />
           </p>
           <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
         </section>

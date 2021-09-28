@@ -39,3 +39,15 @@ export async function getCategories(type) {
   const response = await fetch(endPoint).then((data) => data.json());
   return response[type];
 }
+
+export function getRecomendationsMeals() {
+  return fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+    .then((result) => result.json())
+    .then((resolve) => resolve.meals);
+}
+
+export function getRecomendationsDrinks() {
+  return fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+    .then((result) => result.json())
+    .then((resolve) => resolve.drinks);
+}
