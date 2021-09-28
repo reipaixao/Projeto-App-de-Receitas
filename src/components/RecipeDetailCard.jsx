@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { getMealById, getDrinkById } from '../services/Api';
 import shareIcon from '../images/shareIcon.svg';
 import RecomendationCard from './RecomendationCard';
+import '../CSS/ReciceDetailCard.css';
 
 function RecipeDetail() {
   const { pathname } = useLocation();
@@ -17,7 +18,11 @@ function RecipeDetail() {
       .includes('strIngredient') && valor);
     const strMeasure = strMeal.filter(([chave, valor]) => chave
       .includes('strMeasure') && valor);
-    return strIngredient.map((item, index) => `${item[1]} - ${strMeasure[index][1]}`);
+    return strIngredient.map((item, index) => {
+      if (strMeasure[index] !== undefined) {
+        return `${item[1]} - ${strMeasure[index][1]}`;
+      } return `${item[1]}`;
+    });
   };
 
   useEffect(() => {
@@ -35,7 +40,15 @@ function RecipeDetail() {
     getRecipe();
   }, [id, pathname]);
 
-  const index = 0;
+  // const index = 0;
+
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  // };
 
   return (
     <div>
@@ -87,14 +100,18 @@ function RecipeDetail() {
               title="video"
               data-testid="video"
             />) : null}
-          <p
-            data-testid={ `${index}-recomendation-card` }
-          >
+          <p>
             <RecomendationCard
               path={ pathname.includes('comidas') ? 'comida' : 'bebida' }
             />
           </p>
-          <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
+          <button
+            className="details-start-btn"
+            type="button"
+            data-testid="start-recipe-btn"
+          >
+            Iniciar Receita
+          </button>
         </section>
       )}
     </div>
