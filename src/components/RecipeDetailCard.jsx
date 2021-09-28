@@ -21,9 +21,7 @@ function RecipeDetail() {
     return strIngredient.map((item, index) => {
       if (strMeasure[index] !== undefined) {
         return `${item[1]} - ${strMeasure[index][1]}`;
-      } else {
-        return `${item[1]}`;
-      }
+      } return `${item[1]}`;
     });
   };
 
