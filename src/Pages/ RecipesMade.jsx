@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import copy from 'clipboard-copy';
-import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import '../CSS/recipesMade.css';
@@ -31,14 +30,24 @@ import '../CSS/recipesMade.css';
 //   },
 // ]));
 
-function RecipesMade({ path }) {
+function RecipesMade() {
   // local(); esta linha chama a função para salvar as receitas no localStorage, necessária apenas uma vez
   const [text, setText] = useState(false);
   const storageDoneRecipes = localStorage.getItem('doneRecipes');
   const doneRecipes = JSON.parse(storageDoneRecipes);
 
   const recipeCard = (recipe, index) => {
-    const { name, type, area, image, category, alcoholicOrNot, doneDate, tags } = recipe;
+    const {
+      id,
+      name,
+      type,
+      area,
+      image,
+      category,
+      alcoholicOrNot,
+      doneDate,
+      tags } = recipe;
+
     const topText = (type === 'comida')
       ? `${area} - ${category}`
       : `${category} - ${alcoholicOrNot}`;
@@ -47,7 +56,7 @@ function RecipesMade({ path }) {
         { (text) && (<h3>Link copiado!</h3>) }
         <button
           onClick={ () => {
-            copy(`http://localhost:3000${path}`);
+            copy(`http://localhost:3000/${type}s/${id}`);
             setText(true);
           } }
           type="button"
@@ -90,9 +99,5 @@ function RecipesMade({ path }) {
     </div>
   );
 }
-
-RecipesMade.propTypes = {
-  path: PropTypes.string.isRequired,
-};
 
 export default RecipesMade;
