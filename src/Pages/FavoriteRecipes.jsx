@@ -103,7 +103,7 @@ function FavoriteRecipes() {
               <span
                 data-testid={ `${index}-horizontal-top-text` }
               >
-                { item.category }
+                { item.alcoholicOrNot }
               </span>
               <span data-testid={ `${index}-horizontal-name` }>{ item.name }</span>
               <button
