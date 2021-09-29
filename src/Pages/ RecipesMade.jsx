@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import copy from 'clipboard-copy';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import '../CSS/recipesMade.css';
@@ -31,21 +31,39 @@ import '../CSS/recipesMade.css';
 //   },
 // ]));
 
-function RecipesMade({ path }) {
+function RecipesMade() {
   // local(); esta linha chama a função para salvar as receitas no localStorage, necessária apenas uma vez
   const [text, setText] = useState(false);
+  const [filter, setFilter] = useState('All');
   const storageDoneRecipes = localStorage.getItem('doneRecipes');
   const doneRecipes = JSON.parse(storageDoneRecipes);
 
+  const filterRecipes = (item) => {
+    if (filter === 'All') return item;
+    if (filter === item.type) return item;
+  };
+
   const recipeCard = (recipe, index) => {
-    const { name, type, area, image, category, doneDate, tags } = recipe;
-    const topText = (type === 'comida') ? `${area} - ${category}` : `${category}`;
+    const {
+      id,
+      name,
+      type,
+      area,
+      image,
+      category,
+      alcoholicOrNot,
+      doneDate,
+      tags } = recipe;
+
+    const topText = (type === 'comida')
+      ? `${area} - ${category}`
+      : `${category} - ${alcoholicOrNot}`;
     return (
-      <div>
+      <div key={ index }>
         { (text) && (<h3>Link copiado!</h3>) }
         <button
           onClick={ () => {
-            copy(`http://localhost:3000${path}`);
+            copy(`http://localhost:3000/${type}s/${id}`);
             setText(true);
           } }
           type="button"
@@ -55,15 +73,21 @@ function RecipesMade({ path }) {
           <img src={ shareIcon } alt="compartilhar" />
         </button>
 
-        <img
-          src={ image }
-          alt={ name }
-          data-testid={ `${index}-horizontal-image` }
-          style={ { maxWidth: '100%' } }
-        />
+        <Link to={ `/${type}s/${id}` }>
+          <img
+            src={ image }
+            alt={ name }
+            data-testid={ `${index}-horizontal-image` }
+            style={ { maxWidth: '100%' } }
+          />
+        </Link>
 
         <p data-testid={ `${index}-horizontal-top-text` }>{topText}</p>
-        <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+
+        <Link to={ `/${type}s/${id}` }>
+          <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+        </Link>
+
         <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
         { tags.map((tag, i) => (
           <p key={ i } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>
@@ -76,21 +100,35 @@ function RecipesMade({ path }) {
     <div>
       <Header title="Receitas Feitas" withSearchButton={ false } />
       <section className="made__filter__buttons">
-        <button type="button" data-testid="filter-by-all-btn">All</button>
-        <button type="button" data-testid="filter-by-food-btn">Food</button>
-        <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
+        <button
+          onClick={ () => setFilter('All') }
+          type="button"
+          data-testid="filter-by-all-btn"
+        >
+          All
+        </button>
+        <button
+          onClick={ () => setFilter('comida') }
+          type="button"
+          data-testid="filter-by-food-btn"
+        >
+          Food
+        </button>
+        <button
+          onClick={ () => setFilter('bebida') }
+          type="button"
+          data-testid="filter-by-drink-btn"
+        >
+          Drinks
+        </button>
       </section>
       <section>
-        {doneRecipes && doneRecipes.map((recipe, index) => (
-          recipeCard(recipe, index)
-        ))}
+        { doneRecipes && doneRecipes
+          .filter((item) => filterRecipes(item))
+          .map((recipe, index) => (recipeCard(recipe, index)))}
       </section>
     </div>
   );
 }
-
-RecipesMade.propTypes = {
-  path: PropTypes.string.isRequired,
-};
 
 export default RecipesMade;
