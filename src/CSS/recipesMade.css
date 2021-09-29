@@ -1,0 +1,15 @@
+.made__filter__buttons {
+  align-items: center;
+  display: flex;
+  height: 2.5rem;
+  padding: 0.5rem 0;
+  /* position: fixed; */
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.made__filter__buttons button {
+  font-size: large;
+  padding: .7rem 2.3rem;
+}
