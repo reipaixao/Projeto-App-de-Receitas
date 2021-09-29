@@ -38,7 +38,8 @@ function RecipesMade({ path }) {
   const doneRecipes = JSON.parse(storageDoneRecipes);
 
   const recipeCard = (recipe, index) => {
-    const { name, image, category, doneDate, tags } = recipe;
+    const { name, type, area, image, category, doneDate, tags } = recipe;
+    const topText = (type === 'comida') ? `${area} - ${category}` : `${category}`;
     return (
       <div>
         { (text) && (<h3>Link copiado!</h3>) }
@@ -49,6 +50,7 @@ function RecipesMade({ path }) {
           } }
           type="button"
           data-testid={ `${index}-horizontal-share-btn` }
+          src={ shareIcon }
         >
           <img src={ shareIcon } alt="compartilhar" />
         </button>
@@ -60,7 +62,7 @@ function RecipesMade({ path }) {
           style={ { maxWidth: '100%' } }
         />
 
-        <p data-testid={ `${index}-horizontal-top-text` }>{category}</p>
+        <p data-testid={ `${index}-horizontal-top-text` }>{topText}</p>
         <p data-testid={ `${index}-horizontal-name` }>{name}</p>
         <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
         { tags.map((tag, i) => (
@@ -92,9 +94,3 @@ RecipesMade.propTypes = {
 };
 
 export default RecipesMade;
-
-// O imagem do card de receita deve ter o atributo data-testid="${index}-horizontal-image";
-// O texto da categoria da receita deve ter o atributo data-testid="${index}-horizontal-top-text";
-// O texto do nome da receita deve ter o atributo data-testid="${index}-horizontal-name";
-// O texto da data que a receita foi feita deve ter o atributo data-testid="${index}-horizontal-done-date";
-// As tags da receita devem possuir o atributo data-testid=${index}-${tagName}-horizontal-tag;

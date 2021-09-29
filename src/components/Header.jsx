@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import profileIconSrc from '../images/profileIcon.svg';
 import searchIconSrc from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
-import '../CSS/header.css';
+// import '../CSS/header.css';
 
 function Header({ title, withSearchButton }) {
   const [showSearchInput, setShowSearchInput] = useState(false);
