@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import copy from 'clipboard-copy';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import '../CSS/recipesMade.css';
@@ -72,15 +73,21 @@ function RecipesMade() {
           <img src={ shareIcon } alt="compartilhar" />
         </button>
 
-        <img
-          src={ image }
-          alt={ name }
-          data-testid={ `${index}-horizontal-image` }
-          style={ { maxWidth: '100%' } }
-        />
+        <Link to={ `/${type}s/${id}` }>
+          <img
+            src={ image }
+            alt={ name }
+            data-testid={ `${index}-horizontal-image` }
+            style={ { maxWidth: '100%' } }
+          />
+        </Link>
 
         <p data-testid={ `${index}-horizontal-top-text` }>{topText}</p>
-        <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+
+        <Link to={ `/${type}s/${id}` }>
+          <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+        </Link>
+
         <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
         { tags.map((tag, i) => (
           <p key={ i } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>
