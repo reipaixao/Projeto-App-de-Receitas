@@ -1,0 +1,13 @@
+.made__filter__buttons {
+  align-items: center;
+  display: flex;
+  height: 2.5rem;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+
+.made__filter__buttons button {
+  font-size: large;
+  padding: 0.7rem 2.3rem;
+}

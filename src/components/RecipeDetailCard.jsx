@@ -85,11 +85,11 @@ function RecipeDetail() {
               title="video"
               data-testid="video"
             />) : null}
-          <p>
+          <div>
             <RecomendationCard
               path={ pathname.includes('comidas') ? 'comida' : 'bebida' }
             />
-          </p>
+          </div>
           <Link to={ `${pathname}/in-progress` }>
             <button
               className="details-start-btn"
@@ -99,7 +99,6 @@ function RecipeDetail() {
               Iniciar Receita
             </button>
           </Link>
-          )
         </section>
       )}
     </div>
