@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import copy from 'clipboard-copy';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
-import '../CSS/recipesMade.css'
+import '../CSS/recipesMade.css';
 
 // a função abaixo serve para emular receitas favoritas salvas no localStorage
 // const local = () => localStorage.setItem('doneRecipes', JSON.stringify([
@@ -36,10 +37,11 @@ function RecipesMade({ path }) {
   const storageDoneRecipes = localStorage.getItem('doneRecipes');
   const doneRecipes = JSON.parse(storageDoneRecipes);
 
-  const recipeCard = (name, image, category, doneDate, tags, index) => {
+  const recipeCard = (recipe, index) => {
+    const { name, image, category, doneDate, tags } = recipe;
     return (
       <div>
-         { (text) && (<h3>Link copiado!</h3>) }
+        { (text) && (<h3>Link copiado!</h3>) }
         <button
           onClick={ () => {
             copy(`http://localhost:3000${path}`);
@@ -52,38 +54,42 @@ function RecipesMade({ path }) {
         </button>
 
         <img
-        src={ image }
-        alt={ name }
-        data-testid={ `${index}-horizontal-image` }
-        style={ { maxWidth: '100%' } }
+          src={ image }
+          alt={ name }
+          data-testid={ `${index}-horizontal-image` }
+          style={ { maxWidth: '100%' } }
         />
 
-      <p data-testid={ `${index}-horizontal-top-text` }>{category}</p>
-      <p data-testid={ `${index}-horizontal-name` }>{name}</p>
-      <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
-      { tags.map((tag, i) => {
-        return (<p key={ i } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>);
-      }) }
+        <p data-testid={ `${index}-horizontal-top-text` }>{category}</p>
+        <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+        <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
+        { tags.map((tag, i) => (
+          <p key={ i } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>
+        )) }
       </div>
     );
-  }
+  };
 
   return (
     <div>
       <Header title="Receitas Feitas" withSearchButton={ false } />
       <section className="made__filter__buttons">
-        <button data-testid="filter-by-all-btn">All</button>
-        <button data-testid="filter-by-food-btn">Food</button>
-        <button data-testid="filter-by-drink-btn">Drinks</button>
+        <button type="button" data-testid="filter-by-all-btn">All</button>
+        <button type="button" data-testid="filter-by-food-btn">Food</button>
+        <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
       </section>
       <section>
-      {doneRecipes && doneRecipes.map((recipe, index) => (
-        recipeCard(recipe.name, recipe.image, recipe.category, recipe.doneDate, recipe.tags, index)
-      ))}
+        {doneRecipes && doneRecipes.map((recipe, index) => (
+          recipeCard(recipe, index)
+        ))}
       </section>
     </div>
   );
 }
+
+RecipesMade.propTypes = {
+  path: PropTypes.string.isRequired,
+};
 
 export default RecipesMade;
 

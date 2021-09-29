@@ -6,7 +6,6 @@ import searchIconSrc from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import '../CSS/header.css';
 
-
 function Header({ title, withSearchButton }) {
   const [showSearchInput, setShowSearchInput] = useState(false);
 
@@ -30,17 +29,17 @@ function Header({ title, withSearchButton }) {
       </Link>
       <h1 data-testid="page-title">{title}</h1>
       <section className="searchBar__container">
-      {withSearchButton
-        && (
-          <button
-            type="button"
-            onClick={ handleSearchButtonClick }
-          >
-            <img src={ searchIconSrc } alt="Search Icon" data-testid="search-top-btn" />
-          </button>
-        )}
+        {withSearchButton
+          && (
+            <button
+              type="button"
+              onClick={ handleSearchButtonClick }
+            >
+              <img src={ searchIconSrc } alt="Search Icon" data-testid="search-top-btn" />
+            </button>
+          )}
         {showSearchInput && <SearchBar />}
-      </section>  
+      </section>
     </div>
   );
 }
