@@ -38,8 +38,8 @@ function RecipesMade({ path }) {
   const doneRecipes = JSON.parse(storageDoneRecipes);
 
   const recipeCard = (recipe, index) => {
-    const { name, type, area, image, category, doneDate, tags } = recipe;
-    const topText = (type === 'comida') ? `${area} - ${category}` : `${category}`;
+    const { name, type, area, image, category, alcoholicOrNot, doneDate, tags } = recipe;
+    const topText = (type === 'comida') ? `${area} - ${category}` : `${category} - ${alcoholicOrNot}`;
     return (
       <div>
         { (text) && (<h3>Link copiado!</h3>) }
