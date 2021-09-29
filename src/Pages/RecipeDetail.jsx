@@ -3,7 +3,7 @@ import RecipeDetailCard from '../components/RecipeDetailCard';
 
 function RecipeDetail() {
   return (
-    <RecipeDetailCard />
+    <RecipeDetailCard withStartButton />
   );
 }
 
