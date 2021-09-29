@@ -33,8 +33,14 @@ import '../CSS/recipesMade.css';
 function RecipesMade() {
   // local(); esta linha chama a função para salvar as receitas no localStorage, necessária apenas uma vez
   const [text, setText] = useState(false);
+  const [filter, setFilter] = useState('All');
   const storageDoneRecipes = localStorage.getItem('doneRecipes');
   const doneRecipes = JSON.parse(storageDoneRecipes);
+
+  const filterRecipes = (item) => {
+    if (filter === 'All') return item;
+    if (filter === item.type) return item;
+  };
 
   const recipeCard = (recipe, index) => {
     const {
@@ -52,7 +58,7 @@ function RecipesMade() {
       ? `${area} - ${category}`
       : `${category} - ${alcoholicOrNot}`;
     return (
-      <div>
+      <div key={ index }>
         { (text) && (<h3>Link copiado!</h3>) }
         <button
           onClick={ () => {
@@ -87,14 +93,32 @@ function RecipesMade() {
     <div>
       <Header title="Receitas Feitas" withSearchButton={ false } />
       <section className="made__filter__buttons">
-        <button type="button" data-testid="filter-by-all-btn">All</button>
-        <button type="button" data-testid="filter-by-food-btn">Food</button>
-        <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
+        <button
+          onClick={ () => setFilter('All') }
+          type="button"
+          data-testid="filter-by-all-btn"
+        >
+          All
+        </button>
+        <button
+          onClick={ () => setFilter('comida') }
+          type="button"
+          data-testid="filter-by-food-btn"
+        >
+          Food
+        </button>
+        <button
+          onClick={ () => setFilter('bebida') }
+          type="button"
+          data-testid="filter-by-drink-btn"
+        >
+          Drinks
+        </button>
       </section>
       <section>
-        {doneRecipes && doneRecipes.map((recipe, index) => (
-          recipeCard(recipe, index)
-        ))}
+        { doneRecipes && doneRecipes
+          .filter((item) => filterRecipes(item))
+          .map((recipe, index) => (recipeCard(recipe, index)))}
       </section>
     </div>
   );
