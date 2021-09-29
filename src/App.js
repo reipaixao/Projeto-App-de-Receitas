@@ -16,6 +16,7 @@ import FavoriteRecipes from './Pages/FavoriteRecipes';
 import RecipeDetail from './Pages/RecipeDetail';
 import Provider from './context/Provider';
 import FoodsByArea from './Pages/FoodsByArea';
+import RecipesInProgress from './Pages/RecipesInProgress';
 
 function App() {
   return (
@@ -45,8 +46,8 @@ function App() {
         <Route exact path="/perfil" component={ Perfil } />
         <Route exact path="/comidas/:id" component={ RecipeDetail } />
         <Route exact path="/bebidas/:id" component={ RecipeDetail } />
-        <Route path="/comidas/:id/in-progress" />
-        <Route path="/bebidas/:id/in-progress" />
+        <Route path="/comidas/:id/in-progress" component={ RecipesInProgress } />
+        <Route path="/bebidas/:id/in-progress" component={ RecipesInProgress } />
       </Switch>
     </Provider>
   );
