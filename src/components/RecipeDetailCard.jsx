@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 // https://reactrouter.com/web/api/Hooks
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, Link } from 'react-router-dom';
 import { getMealById, getDrinkById } from '../services/Api';
-import shareIcon from '../images/shareIcon.svg';
+// import shareIcon from '../images/shareIcon.svg';
 import RecomendationCard from './RecomendationCard';
 import '../CSS/ReciceDetailCard.css';
+import DetailsButtons from './DetailsButtons';
 
 function RecipeDetail() {
   const { pathname } = useLocation();
@@ -40,16 +41,6 @@ function RecipeDetail() {
     getRecipe();
   }, [id, pathname]);
 
-  // const index = 0;
-
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  // };
-
   return (
     <div>
       {/* Com auxilio do Murilo Rainho */}
@@ -62,13 +53,7 @@ function RecipeDetail() {
             alt="cocktail"
           />
           <h2 data-testid="recipe-title">{recipe[0].strMeal || recipe[0].strDrink}</h2>
-          <button
-            type="button"
-            data-testid="share-btn"
-          >
-            <img src={ shareIcon } alt="compartilhar" />
-          </button>
-          <button data-testid="favorite-btn" type="button">Favorite</button>
+          <DetailsButtons path={ `${pathname}` } />
           <p
             data-testid="recipe-category"
           >
@@ -105,13 +90,15 @@ function RecipeDetail() {
               path={ pathname.includes('comidas') ? 'comida' : 'bebida' }
             />
           </div>
-          <button
-            className="details-start-btn"
-            type="button"
-            data-testid="start-recipe-btn"
-          >
-            Iniciar Receita
-          </button>
+          <Link to={ `${pathname}/in-progress` }>
+            <button
+              className="details-start-btn"
+              type="button"
+              data-testid="start-recipe-btn"
+            >
+              Iniciar Receita
+            </button>
+          </Link>
         </section>
       )}
     </div>

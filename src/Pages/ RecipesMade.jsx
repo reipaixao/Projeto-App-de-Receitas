@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import copy from 'clipboard-copy';
 import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import '../CSS/recipesMade.css'
@@ -29,17 +30,23 @@ import '../CSS/recipesMade.css'
 //   },
 // ]));
 
-function RecipesMade() {
+function RecipesMade({ path }) {
   // local(); esta linha chama a função para salvar as receitas no localStorage, necessária apenas uma vez
+  const [text, setText] = useState(false);
   const storageDoneRecipes = localStorage.getItem('doneRecipes');
   const doneRecipes = JSON.parse(storageDoneRecipes);
 
   const recipeCard = (name, image, category, doneDate, tags, index) => {
     return (
       <div>
+         { (text) && (<h3>Link copiado!</h3>) }
         <button
-        type="button"
-        data-testid={ `${index}-horizontal-share-btn` }
+          onClick={ () => {
+            copy(`http://localhost:3000${path}`);
+            setText(true);
+          } }
+          type="button"
+          data-testid={ `${index}-horizontal-share-btn` }
         >
           <img src={ shareIcon } alt="compartilhar" />
         </button>
