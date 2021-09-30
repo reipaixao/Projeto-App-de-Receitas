@@ -79,6 +79,7 @@ function RecipeDetail({ withStartButton }) {
       />
       <h2 data-testid="recipe-title">{recipe[0].strMeal || recipe[0].strDrink}</h2>
       <DetailsButtons path={ `${pathname}` } />
+      <FavoriteButton recipe={ recipe } />
       <p
         data-testid="recipe-category"
       >
