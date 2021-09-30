@@ -8,6 +8,15 @@ import RecomendationCard from './RecomendationCard';
 import '../CSS/ReciceDetailCard.css';
 import DetailsButtons from './DetailsButtons';
 
+const withCheckbox = (pathname) => {
+  const shouldRenderCheckbox = pathname && pathname.includes('in-progress');
+
+  if (shouldRenderCheckbox) {
+    return <input type="checkbox" />;
+  }
+  return null;
+};
+
 // Essas funcoes nao pertencem ao componente
 const filterMealOrDrinkStr = (stringMealOrDrink, property) => stringMealOrDrink
   .filter(([chave, valor]) => chave
@@ -17,7 +26,6 @@ const defineIngredientTestId = (pathname, index) => (
   pathname && pathname.includes('in-progress')
     ? `${index}-ingredient-step`
     : `${index}-ingredient-name-and-measure`);
-
 function RecipeDetail({ withStartButton }) {
   const { pathname } = useLocation();
   const { id } = useParams();
@@ -82,6 +90,7 @@ function RecipeDetail({ withStartButton }) {
             data-testid={ defineIngredientTestId(pathname, idx) }
             key={ `${idx}` }
           >
+            {withCheckbox(pathname)}
             { ingredient }
           </li>
         ))}
