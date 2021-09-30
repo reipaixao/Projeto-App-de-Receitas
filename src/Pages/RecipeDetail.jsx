@@ -8,7 +8,7 @@ const style = {
 function RecipeDetail() {
   return (
     <div style={ style }>
-      <RecipeDetailCard withStartButton/>
+      <RecipeDetailCard withStartButton />
     </div>
   );
 }
