@@ -34,13 +34,17 @@ function RecomendationCard({ path }) {
     speed: 1000,
     slidesToShow: 2,
     slidesToScroll: 2,
+    arrows: true,
   };
 
   return recomendations.length ? (
     <section>
       <Slider { ...settings }>
         {recomendations.map((recipe, index) => (index < MAX_CARD_RECOMENDATIONS ? (
-          <div data-testid={ `${index}-recomendation-card` } key={ index }>
+          <div
+            data-testid={ `${index}-recomendation-card` }
+            key={ index }
+          >
             <img
               style={ { width: '200px' } }
               src={ recipe.strMealThumb || recipe.strDrinkThumb }
