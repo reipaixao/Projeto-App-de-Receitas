@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import { getMealById, getDrinkById } from '../services/Api';
 // import shareIcon from '../images/shareIcon.svg';
 import RecomendationCard from './RecomendationCard';
-import '../CSS/ReciceDetailCard.css';
+import '../CSS/reciceDetailCard.css';
 import DetailsButtons from './DetailsButtons';
+import FavoriteButton from './FavoriteButton';
 
 const withCheckbox = (pathname) => {
   const shouldRenderCheckbox = pathname && pathname.includes('in-progress');
@@ -26,6 +27,7 @@ const defineIngredientTestId = (pathname, index) => (
   pathname && pathname.includes('in-progress')
     ? `${index}-ingredient-step`
     : `${index}-ingredient-name-and-measure`);
+
 function RecipeDetail({ withStartButton }) {
   const { pathname } = useLocation();
   const { id } = useParams();
@@ -78,6 +80,7 @@ function RecipeDetail({ withStartButton }) {
       />
       <h2 data-testid="recipe-title">{recipe[0].strMeal || recipe[0].strDrink}</h2>
       <DetailsButtons path={ `${pathname}` } />
+      <FavoriteButton recipe={ recipe } />
       <p
         data-testid="recipe-category"
       >

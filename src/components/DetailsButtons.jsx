@@ -5,8 +5,6 @@ import shareIcon from '../images/shareIcon.svg';
 
 export default function DetailsButtons({ path }) {
   const [text, setText] = useState(false);
-  // const { pathname } = useLocation();
-  // console.log(path, 'path');
 
   return (
     <div>
@@ -21,7 +19,6 @@ export default function DetailsButtons({ path }) {
       >
         <img src={ shareIcon } alt="compartilhar" />
       </button>
-      <button data-testid="favorite-btn" type="button">Favorite</button>
     </div>
   );
 }
