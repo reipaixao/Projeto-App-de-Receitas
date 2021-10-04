@@ -65,3 +65,18 @@ export async function getRandomMeal() {
   const resultJson = await result.json();
   return resultJson;
 }
+
+// ===================fazendo requisiçao de Api ingredientes para as comidas===================
+export async function getMealIngredients() {
+  const endpoint = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+  const result = await fetch(endpoint);
+  const resultJson = await result.json();
+  return resultJson;
+}
+// ===================fazendo requisiçao de Api ingredientes para as bebidas===================
+export async function getDrinkIngredients() {
+  const endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+  const result = await fetch(endpoint);
+  const resultJson = await result.json();
+  return resultJson;
+}
