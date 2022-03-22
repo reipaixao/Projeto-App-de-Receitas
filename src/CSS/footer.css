@@ -1,0 +1,16 @@
+.footer__container {
+  align-items: center;
+  background-color: #c4c4c4;
+  bottom: 0;
+  display: flex;
+  height: 2.5rem;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  position: fixed;
+  width: 100%;
+}
+
+.footer__link {
+  cursor: pointer;
+  padding: 0.5rem;
+}
